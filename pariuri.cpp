@@ -5,6 +5,21 @@
 #include <map>
 #include <ostream>
 
+int Pariuri::nr_pariuri = 0;
+Pariuri::Pariuri(const Pariuri& other) : miza(other.miza), vect_pariuri(other.vect_pariuri) {
+    nr_pariuri++;
+}
+Pariuri& Pariuri::operator=(const Pariuri& other) 
+{
+    swap(const_cast<Pariuri&>(other));
+    return *this;
+}
+void Pariuri::swap(Pariuri& other) noexcept
+{
+    std::swap(miza, other.miza);
+    std::swap(vect_pariuri, other.vect_pariuri);
+}
+
 double PariuSimplu::calculeaza_castig() const
 {
     if(vect_pariuri.size() != 1)
