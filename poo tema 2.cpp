@@ -460,16 +460,20 @@ std::map<int, double>& vect_egal, std::map<int,double>& vect_echipa2)
         {
             if(meci.first == id_meciuri[ind])
             {
-                std::cout << "alege una sau mai multe dintre urmatoarele actiuni si scrie 'gata' cand ai terminat: " << std::endl;
+                std::cout << "alege una sau mai multe dintre urmatoarele actiuni pentru "
+                 << meci.second.first << " vs " << meci.second.second << " si scrie 'gata' cand ai terminat: " << std::endl;
                 for(const auto& actiune: actiuni)
                 {
                     std::cout << actiune << std::endl;
                 }
                 std::vector<std::string> actiuni_alese;
                 std::string actiune_aleasa;
-                while(std::getline(std::cin, actiune_aleasa) && actiune_aleasa != "gata")
+                while(std::getline(std::cin, actiune_aleasa))
                 {
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    if(actiune_aleasa == "gata")
+                    {
+                        break;
+                    }
                     actiuni_alese.push_back(actiune_aleasa);
                 }
                 PariuMeci pariu_meci;
@@ -746,16 +750,20 @@ std::map<int, double>& vect_egal, std::map<int, double>& vect_echipa2)
         {
             if(meci.first == id_meciuri[ind])
             {
-                std::cout << "alege una sau mai multe dintre urmatoarele actiuni si scrie 'gata' cand ai terminat: " << std::endl;
+                std::cout << "alege una sau mai multe dintre urmatoarele actiuni pentru "
+                << meci.second.first << " vs " << meci.second.second << " si scrie 'gata' cand ai terminat: " << std::endl;
                 for(const auto& actiune: actiuni)
                 {
                     std::cout << actiune << std::endl;
                 }
                 std::vector<std::string> actiuni_alese;
                 std::string actiune_aleasa;
-                while(std::getline(std::cin, actiune_aleasa) && actiune_aleasa != "gata")
+                while(std::getline(std::cin, actiune_aleasa))
                 {
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    if(actiune_aleasa == "gata")
+                    {
+                        break;
+                    }
                     actiuni_alese.push_back(actiune_aleasa);
                 }
                 PariuMeci pariu_meci;
@@ -1044,7 +1052,7 @@ int main()
 
     for(int ind = 0; ind < nr_pariuri; ind++)
     {
-        std::cout << "introdu tipul pariului (simplu, multiplu sau sistem) pentru pariul " << ind <<": ";
+        std::cout << "introdu tipul pariului (simplu, multiplu sau sistem) pentru pariul " << ind + 1 <<": ";
         std::string tip_pariu;
 
         std::cin >> tip_pariu;
@@ -1218,5 +1226,6 @@ int main()
         }
         pariu->afisare(std::cout);
     }
+    std::cout << "banii ramasi nepariat: " << suma << std::endl;
     return 0;
 }
